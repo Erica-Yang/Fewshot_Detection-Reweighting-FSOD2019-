@@ -55,6 +55,7 @@ tar xf VOCtest_06-Nov-2007.tar
 ```
 
 + Generate Labels for VOC
+合并所有训练数据
 ```
 wget http://pjreddie.com/media/files/voc_label.py
 python voc_label.py
@@ -62,14 +63,16 @@ cat 2007_train.txt 2007_val.txt 2012_*.txt > voc_train.txt
 ```
 
 + Generate per-class Labels for VOC (used for meta inpput)
+生成每个类别下的训练数据：如 "VOC/voclist/person_train.txt"
 ```
 cp $PROJ_ROOT/scripts/voc_label_1c.py $DATA_ROOT
 cd $DATA_ROOT
 python voc_label_1c.py
 ```
-
+生成不同shot下，不同类别的元训练数据：  如：VOC/voclist/box_3shot_cat_train.txt
 + Generate few-shot image list
 To use our few-shot datasets
+
 ```
 cd $PROJ_ROOT
 python scripts/convert_fewlist.py 
